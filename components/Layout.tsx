@@ -46,9 +46,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <header className="bg-slate-900 dark:bg-black text-white shadow-xl py-6 transition-all no-print sticky top-0 z-[100] backdrop-blur-lg bg-opacity-90">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 transition-colors duration-300 font-ar">
+      <header className="bg-slate-900/95 dark:bg-black/95 text-white shadow-xl py-4 lg:py-6 transition-all no-print sticky top-0 z-[100] backdrop-blur-xl">
+        <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavClick?.('home')}>
             <div className="bg-emerald-500 p-3 rounded-[18px] rotate-3 shadow-2xl shadow-emerald-500/20">
               <i className="fa-solid fa-bolt-lightning text-2xl"></i>

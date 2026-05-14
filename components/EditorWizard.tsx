@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { CVData, WizardStep, Language } from '../types';
 import { suggestFieldContent } from '../services/geminiService';
+import { sanitizeInput } from '../services/securityUtils';
 
 interface EditorWizardProps {
   data: CVData;
@@ -56,7 +57,7 @@ export const EditorWizard: React.FC<EditorWizardProps> = ({ data, onChange, step
             className="w-full p-4 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all dark:text-white"
             value={data?.personal_info?.full_name || ''}
             placeholder={isRtl ? 'أدخل اسمك الكامل' : 'Enter your full name'}
-            onChange={e => onChange({ personal_info: { ...data.personal_info, full_name: e.target.value } })}
+            onChange={e => onChange({ personal_info: { ...data.personal_info, full_name: sanitizeInput(e.target.value) } })}
           />
         </div>
         <div className="space-y-2">
@@ -65,7 +66,7 @@ export const EditorWizard: React.FC<EditorWizardProps> = ({ data, onChange, step
             className="w-full p-4 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all dark:text-white"
             value={data?.personal_info?.target_job || ''}
             placeholder={isRtl ? 'مثال: مدير مشاريع' : 'e.g. Project Manager'}
-            onChange={e => onChange({ personal_info: { ...data.personal_info, target_job: e.target.value } })}
+            onChange={e => onChange({ personal_info: { ...data.personal_info, target_job: sanitizeInput(e.target.value) } })}
           />
         </div>
       </div>

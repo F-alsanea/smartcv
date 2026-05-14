@@ -7,6 +7,12 @@ import { CareerPath } from './components/CareerPath';
 import { SmartHelper } from './components/SmartHelper';
 import { JobMatcher } from './components/JobMatcher';
 import { CareerRadar } from './components/CareerRadar';
+import { VirtualCoach } from './components/VirtualCoach';
+import { CareerSimulator } from './components/CareerSimulator';
+import { PortfolioBuilder } from './components/PortfolioBuilder';
+import { CredentialVerifier } from './components/CredentialVerifier';
+import { SalaryNegotiator } from './components/SalaryNegotiator';
+import { SocialBrand } from './components/SocialBrand';
 import { Invoice } from './components/Invoice';
 import { CandidateHub } from './components/CandidateHub';
 import { EditorWizard } from './components/EditorWizard';
@@ -14,6 +20,7 @@ import { TalentScout } from './components/TalentScout';
 import { processCVInput, translateCV, generateCoverLetter } from './services/geminiService';
 import { UserRole, ApiResponse, CVData, CandidateProfile, TemplateType, ThemeConfig, Language, ThemeMode, WizardStep, InvoiceData, ArchiveItem } from './types';
 import { TRANSLATIONS, PAYMENT_INFO } from './constants';
+import { sanitizeInput } from './services/securityUtils';
 
 const initialCV: CVData = {
   personal_info: { full_name: '', email: '', phone: '', location: '', target_job: '' },
@@ -201,7 +208,8 @@ const App: React.FC = () => {
   }, [result, invoice, otp]);
 
   const handleActivate = (code: string, invoiceData?: InvoiceData) => {
-    if (code === "INSTANT_SUCCESS" || code.length >= 4) {
+    const safeCode = sanitizeInput(code);
+    if (safeCode === "INSTANT_SUCCESS" || safeCode.length >= 4) {
       if (role === UserRole.EMPLOYER && pendingCandidateToUnlock) {
          setUnlockedCandidateIds(prev => [...prev, pendingCandidateToUnlock.id]);
          setPendingCandidateToUnlock(null);
@@ -259,6 +267,15 @@ const App: React.FC = () => {
     el?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleVerification = (res: any) => {
+    if (res.is_verified || res.is_valid) {
+      setResult(prev => prev ? {
+        ...prev,
+        cv: { ...prev.cv, is_verified: true }
+      } : null);
+    }
+  };
+
   return (
     <Layout lang={uiLang} onLangToggle={handleTranslateToggle} themeMode={themeMode} onThemeToggle={toggleTheme} onNavClick={handleNavClick}>
       <div className="container mx-auto px-4 py-8">
@@ -299,22 +316,81 @@ const App: React.FC = () => {
         )}
 
         {!role && activeInfoPage === 'home' && (
-          <div className="flex flex-col items-center py-20 animate-in fade-in zoom-in duration-300">
-            <h2 className="text-7xl md:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter">
-              {t.hero_title}<span className="text-emerald-500">{t.hero_title_accent}</span>
-            </h2>
-            <p className="text-slate-500 text-2xl mb-16 text-center max-w-2xl font-medium leading-relaxed">{t.hero_desc}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
-              <button onClick={() => setRole(UserRole.SEEKER)} className="p-12 bg-white dark:bg-slate-900 border-2 rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group">
-                <i className="fa-solid fa-user-graduate text-4xl text-emerald-500 mb-6"></i>
-                <h3 className="text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
-                <p className="text-slate-500 text-sm">{t.role_seeker_desc}</p>
-              </button>
-              <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-12 bg-slate-900 text-white rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group">
-                <i className="fa-solid fa-bolt text-4xl text-emerald-400 mb-6"></i>
-                <h3 className="text-3xl font-black mb-2">{t.role_employer}</h3>
-                <p className="text-slate-400 text-sm">{t.role_employer_desc}</p>
-              </button>
+          <div className="py-20 animate-in fade-in zoom-in duration-300">
+            {/* Hero Section */}
+            <div className="flex flex-col items-center mb-32">
+              <div className="mb-8 inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-sm">
+                <i className="fa-solid fa-shield-halved"></i>
+                {isRtl ? 'المحرك السيادي الأول في المملكة' : 'KSA\'s First Sovereign Career Engine'}
+              </div>
+              <h2 className="text-7xl md:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter text-center">
+                {t.hero_title}<span className="text-emerald-500">{t.hero_title_accent}</span>
+              </h2>
+              <p className="text-slate-500 dark:text-slate-400 text-2xl mb-16 text-center max-w-2xl font-medium leading-relaxed">
+                {t.hero_desc}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                <button onClick={() => setRole(UserRole.SEEKER)} className="p-12 bg-white dark:bg-slate-900 border-2 rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[50px]"></div>
+                  <i className="fa-solid fa-user-graduate text-4xl text-emerald-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                  <h3 className="text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
+                  <p className="text-slate-500 text-sm">{t.role_seeker_desc}</p>
+                </button>
+                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-12 bg-slate-900 text-white rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px]"></div>
+                  <i className="fa-solid fa-bolt text-4xl text-emerald-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                  <h3 className="text-3xl font-black mb-2">{t.role_employer}</h3>
+                  <p className="text-slate-400 text-sm">{t.role_employer_desc}</p>
+                </button>
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="mb-32 text-center">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-10">{isRtl ? 'تقنياتنا معتمدة ومدعومة بـ' : 'Our Technology is Powered By'}</p>
+              <div className="flex flex-wrap justify-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="flex items-center gap-3"><i className="fa-brands fa-google text-3xl"></i><span className="font-black">Google Gemini</span></div>
+                <div className="flex items-center gap-3"><i className="fa-solid fa-robot text-3xl"></i><span className="font-black">OpenAI</span></div>
+                <div className="flex items-center gap-3"><i className="fa-solid fa-shield-virus text-3xl"></i><span className="font-black">CyberGuard</span></div>
+                <div className="flex items-center gap-3"><i className="fa-solid fa-building-columns text-3xl"></i><span className="font-black">Vision 2030 Standards</span></div>
+              </div>
+            </div>
+
+            {/* Why Sira-AI Section */}
+            <div className="max-w-6xl mx-auto mb-32">
+              <div className="text-center mb-16">
+                <h3 className="text-5xl font-black mb-4 tracking-tighter dark:text-white">{isRtl ? 'لماذا يختار المحترفون "سيرتي"؟' : 'Why Professionals Choose Sira-AI?'}</h3>
+                <p className="text-slate-500 dark:text-slate-400 font-medium">{isRtl ? 'نحن لا نصمم مجرد ملفات، نحن نبني هويات مهنية لا تُنسى.' : 'We don\'t just design files, we build unforgettable professional identities.'}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                  { icon: 'fa-microchip', title: isRtl ? 'هندسة ATS 2026' : 'ATS 2026 Engineering', desc: isRtl ? 'تخطي أنظمة الفرز الآلي في كبرى الشركات العالمية.' : 'Bypass automated screening systems in top global companies.' },
+                  { icon: 'fa-brain', title: isRtl ? 'ذكاء اصطناعي سيادي' : 'Sovereign AI', desc: isRtl ? 'معالجة بياناتك محلياً وبدقة متناهية تناسب سوقنا.' : 'Process your data locally with extreme precision for our market.' },
+                  { icon: 'fa-money-bill-trend-up', title: isRtl ? 'زيادة الدخل' : 'Revenue Growth', desc: isRtl ? 'مساعدتنا في التفاوض تزيد فرص حصولك على راتب أعلى.' : 'Our negotiation assistant increases your chances of a higher salary.' }
+                ].map((f, i) => (
+                  <div key={i} className="bg-white dark:bg-slate-900 p-10 rounded-[40px] shadow-xl border border-slate-50 dark:border-slate-800 hover:border-emerald-500 transition-all text-center">
+                    <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                      <i className={`fa-solid ${f.icon}`}></i>
+                    </div>
+                    <h4 className="text-xl font-black mb-3 dark:text-white">{f.title}</h4>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Revenue CTA */}
+            <div className="bg-slate-900 rounded-[60px] p-16 text-center relative overflow-hidden shadow-4xl group">
+               <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[100px] pointer-events-none transition-all group-hover:bg-emerald-500/20"></div>
+               <h3 className="text-5xl font-black text-white mb-6 tracking-tighter">
+                 {isRtl ? 'جاهز للانتقال للمستوى التالي؟' : 'Ready to Leap to the Next Level?'}
+               </h3>
+               <p className="text-slate-400 text-xl mb-10 max-w-2xl mx-auto">
+                 {isRtl ? 'انضم لأكثر من 5000 محترف حصلوا على وظائف أحلامهم باستخدام تقنياتنا.' : 'Join over 5,000 professionals who landed their dream jobs using our technology.'}
+               </p>
+               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-emerald-500 hover:bg-emerald-600 text-white px-12 py-5 rounded-3xl font-black text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all">
+                 {isRtl ? 'ابدأ رحلتك المهنية الآن' : 'Start Your Career Journey Now'}
+               </button>
             </div>
           </div>
         )}
@@ -374,9 +450,20 @@ const App: React.FC = () => {
                            </button>
                         </div>
                         {invoice && <Invoice data={invoice} lang={uiLang} />}
-                        <JobMatcher cv={result.cv} />
-                        <CareerPath data={result.career_path} />
-                        <SmartHelper data={result.smart_helper} />
+                        <div className="grid grid-cols-1 gap-12">
+                          <CareerRadar data={result.market_insights} />
+                          <CredentialVerifier cvData={result.cv} onVerified={handleVerification} />
+                          <CareerSimulator data={result.timeline} />
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                             <SalaryNegotiator data={result.salary_negotiation} />
+                             <SocialBrand data={result.social_brand} />
+                          </div>
+                          <PortfolioBuilder data={result.portfolio} />
+                          <VirtualCoach targetJob={result.cv.personal_info.target_job} />
+                          <JobMatcher cv={result.cv} />
+                          <CareerPath data={result.career_path} />
+                          <SmartHelper data={result.smart_helper} />
+                        </div>
                      </div>
                    )}
                 </div>

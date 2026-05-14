@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-ar: "Tajawal", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-en: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-ar: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-en: "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  /* Adding custom font placeholders */
-  --font-custom: "MyCustomFont", sans-serif;
+  --color-primary: #059669;
+  --color-primary-dark: #047857;
+  --color-accent: #10b981;
 
   --color-emerald-50: #ecfdf5;
   --color-emerald-100: #d1fae5;

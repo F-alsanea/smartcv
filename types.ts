@@ -134,6 +134,10 @@ export interface ApiResponse {
   career_path: CareerPathData;
   smart_helper: SmartHelperData;
   market_insights: MarketInsights;
+  timeline: CareerTimeline;
+  portfolio: PortfolioLayout;
+  social_brand: SocialBrand;
+  salary_negotiation: SalaryNegotiation;
 }
 
 export interface JobMatchResult {
