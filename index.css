@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-ar: "Cairo", ui-sans-serif, system-ui, sans-serif;
-  --font-en: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-en: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   
-  --color-primary: #059669;
-  --color-primary-dark: #047857;
-  --color-accent: #10b981;
+  --color-primary: #000000;
+  --color-primary-dark: #1a1a1a;
+  --color-accent: #ff5a00;
 
   --color-emerald-50: #ecfdf5;
   --color-emerald-100: #d1fae5;

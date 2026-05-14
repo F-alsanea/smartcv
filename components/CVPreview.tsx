@@ -82,7 +82,7 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
               {isEditing && (
                 <button 
                   onClick={() => handleRewrite(data.summary, 'professional summary', 'summary')}
-                  className="text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1 hover:bg-emerald-600 no-print"
+                  className="text-[10px] bg-[#ff5a00] text-white px-2 py-0.5 rounded opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1 hover:bg-[#e65100] no-print"
                 >
                   <i className={`fa-solid ${loadingRewrite && rewritingField === 'summary' ? 'fa-spinner fa-spin' : 'fa-sparkles'}`}></i>
                   {isRtl ? 'تحسين ذكي' : 'Smart Improve'}
@@ -100,14 +100,14 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
               <p className={`${autoFontSize} leading-relaxed ${textColor} text-justify whitespace-pre-wrap`}>{data.summary}</p>
             )}
             {rewritingField === 'summary' && rewriteOptions && (
-              <div className="mt-2 bg-emerald-50 dark:bg-emerald-950/40 p-3 rounded-xl border border-emerald-100 dark:border-emerald-900 no-print animate-in slide-in-from-top duration-300 z-50 shadow-lg">
+              <div className="mt-2 bg-orange-50 dark:bg-orange-950/40 p-3 rounded-xl border border-orange-100 dark:border-orange-900 no-print animate-in slide-in-from-top duration-300 z-50 shadow-lg">
                 <div className="flex justify-between mb-2">
-                   <p className="text-[10px] font-black text-emerald-700 dark:text-emerald-400 uppercase">{isRtl ? 'خيارات الصياغة البديلة:' : 'Professional Alternatives:'}</p>
+                   <p className="text-[10px] font-black text-orange-700 dark:text-orange-400 uppercase">{isRtl ? 'خيارات الصياغة البديلة:' : 'Professional Alternatives:'}</p>
                    <button onClick={() => setRewritingField(null)}><i className="fa-solid fa-xmark text-slate-400"></i></button>
                 </div>
                 <div className="space-y-2">
                   {rewriteOptions.alternatives.map((alt, idx) => (
-                    <button key={idx} onClick={() => applyRewrite(alt, 'summary')} className="w-full text-right p-3 bg-white dark:bg-slate-900 border border-emerald-100 dark:border-emerald-800 rounded-lg text-[10px] hover:border-emerald-500 transition-all font-medium text-slate-700 dark:text-slate-300">
+                    <button key={idx} onClick={() => applyRewrite(alt, 'summary')} className="w-full text-right p-3 bg-white dark:bg-slate-900 border border-orange-100 dark:border-orange-800 rounded-lg text-[10px] hover:border-[#ff5a00] transition-all font-medium text-slate-700 dark:text-slate-300">
                       {alt}
                     </button>
                   ))}
@@ -344,7 +344,7 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
                 <span className="text-[10px] font-bold text-slate-400 self-center">{data.personal_info?.location}</span>
                </div>
              </div>
-             <div className="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-2xl text-[10px] font-black shadow-inner print:hidden shrink-0">ATS SCORE: {data.ats_score}%</div>
+             <div className="bg-orange-50 text-orange-600 px-4 py-2 rounded-2xl text-[10px] font-black shadow-inner print:hidden shrink-0">ATS SCORE: {data.ats_score}%</div>
           </div>
         </div>
         <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8">

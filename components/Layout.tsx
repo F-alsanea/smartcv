@@ -51,32 +51,32 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
       <header className="bg-slate-900/95 dark:bg-black/95 text-white shadow-xl py-4 lg:py-6 transition-all no-print sticky top-0 z-[100] backdrop-blur-xl">
         <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavClick?.('home')}>
-            <div className="bg-emerald-500 p-3 rounded-[18px] rotate-3 shadow-2xl shadow-emerald-500/20">
+            <div className="bg-[#ff5a00] p-3 rounded-[18px] rotate-3 shadow-2xl shadow-[#ff5a00]/20">
               <i className="fa-solid fa-bolt-lightning text-2xl"></i>
             </div>
             <div>
               <h1 className={`text-2xl font-black tracking-tighter ${!isRtl ? 'font-en' : ''}`}>
-                {isRtl ? 'سيرتي الذكية' : 'Sira-AI'}
+                {isRtl ? 'سِيرة' : 'Sira'}
               </h1>
-              <span className="text-emerald-400 text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+              <span className="text-amber-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
                 {t.tagline}
               </span>
             </div>
           </div>
           <div className="flex items-center gap-4 md:gap-6">
             <nav className="hidden lg:flex gap-6 text-[10px] font-black uppercase tracking-widest">
-              <button onClick={() => onNavClick?.('about')} className="hover:text-emerald-400 transition-colors">{t.nav_about}</button>
+              <button onClick={() => onNavClick?.('about')} className="hover:text-[#ff5a00] transition-colors">{t.nav_about}</button>
               <button onClick={() => onNavClick?.('archive')} className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
                 <i className="fa-solid fa-crown text-amber-500"></i> {t.nav_archive}
               </button>
-              <button onClick={() => onNavClick?.('payment')} className="hover:text-emerald-400 transition-colors">{t.nav_payment}</button>
-              <button onClick={() => onNavClick?.('general')} className="hover:text-emerald-400 transition-colors">{t.nav_terms}</button>
-              <button onClick={() => setShowSupport(true)} className="hover:text-emerald-400 transition-colors">{t.nav_contact}</button>
+              <button onClick={() => onNavClick?.('payment')} className="hover:text-[#ff5a00] transition-colors">{t.nav_payment}</button>
+              <button onClick={() => onNavClick?.('general')} className="hover:text-[#ff5a00] transition-colors">{t.nav_terms}</button>
+              <button onClick={() => setShowSupport(true)} className="hover:text-[#ff5a00] transition-colors">{t.nav_contact}</button>
             </nav>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="lg:hidden bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 p-2 rounded-full text-white border border-slate-700 transition-all flex items-center justify-center w-10 h-10"
+                className="lg:hidden bg-black hover:bg-slate-800 p-2 rounded-full text-white border border-slate-800 transition-all flex items-center justify-center w-10 h-10"
               >
                 <i className={`fa-solid ${showMobileMenu ? 'fa-xmark' : 'fa-bars'}`}></i>
               </button>
@@ -90,7 +90,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
                 onClick={onLangToggle}
                 className="bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 px-5 py-2.5 rounded-full text-[10px] font-black border border-slate-700 transition-all flex items-center gap-2 shadow-xl"
               >
-                <i className="fa-solid fa-globe text-emerald-500"></i>
+                <i className="fa-solid fa-globe text-[#ff5a00]"></i>
                 {isRtl ? 'English' : 'العربية'}
               </button>
             </div>
@@ -99,15 +99,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
 
         {/* Mobile Menu */}
         {showMobileMenu && (
-          <div className="lg:hidden bg-slate-900 border-t border-slate-800 animate-in slide-in-from-top duration-300">
+          <div className="lg:hidden bg-black border-t border-slate-900 animate-in slide-in-from-top duration-300">
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4 text-[10px] font-black uppercase tracking-widest">
-              <button onClick={() => { onNavClick?.('about'); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2 border-b border-slate-800">{t.nav_about}</button>
-              <button onClick={() => { onNavClick?.('archive'); setShowMobileMenu(false); }} className="hover:text-amber-400 transition-colors flex items-center gap-1.5 py-2 border-b border-slate-800">
+              <button onClick={() => { onNavClick?.('about'); setShowMobileMenu(false); }} className="hover:text-[#ff5a00] transition-colors text-start py-2 border-b border-slate-900">{t.nav_about}</button>
+              <button onClick={() => { onNavClick?.('archive'); setShowMobileMenu(false); }} className="hover:text-amber-400 transition-colors flex items-center gap-1.5 py-2 border-b border-slate-900">
                 <i className="fa-solid fa-crown text-amber-500"></i> {t.nav_archive}
               </button>
-              <button onClick={() => { onNavClick?.('payment'); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2 border-b border-slate-800">{t.nav_payment}</button>
-              <button onClick={() => { onNavClick?.('general'); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2 border-b border-slate-800">{t.nav_terms}</button>
-              <button onClick={() => { setShowSupport(true); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2">{t.nav_contact}</button>
+              <button onClick={() => { onNavClick?.('payment'); setShowMobileMenu(false); }} className="hover:text-[#ff5a00] transition-colors text-start py-2 border-b border-slate-900">{t.nav_payment}</button>
+              <button onClick={() => { onNavClick?.('general'); setShowMobileMenu(false); }} className="hover:text-[#ff5a00] transition-colors text-start py-2 border-b border-slate-900">{t.nav_terms}</button>
+              <button onClick={() => { setShowSupport(true); setShowMobileMenu(false); }} className="hover:text-[#ff5a00] transition-colors text-start py-2">{t.nav_contact}</button>
             </nav>
           </div>
         )}
@@ -120,9 +120,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
       <footer className="bg-slate-900 dark:bg-black text-slate-400 py-16 text-center text-sm border-t border-slate-800 no-print">
         <div className="container mx-auto px-4 space-y-8">
           <div className="flex justify-center gap-10 text-slate-500">
-            <a href={PAYMENT_INFO.linkedin} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin text-2xl hover:text-emerald-500 cursor-pointer transition-colors"></i></a>
-            <i className="fa-brands fa-x-twitter text-2xl hover:text-emerald-500 cursor-pointer transition-colors"></i>
-            <a href={`https://wa.me/${PAYMENT_INFO.whatsapp}`} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-whatsapp text-2xl hover:text-emerald-500 cursor-pointer transition-colors"></i></a>
+            <a href={PAYMENT_INFO.linkedin} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin text-2xl hover:text-[#ff5a00] cursor-pointer transition-colors"></i></a>
+            <i className="fa-brands fa-x-twitter text-2xl hover:text-[#ff5a00] cursor-pointer transition-colors"></i>
+            <a href={`https://wa.me/${PAYMENT_INFO.whatsapp}`} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-whatsapp text-2xl hover:text-[#ff5a00] cursor-pointer transition-colors"></i></a>
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-500">
@@ -135,7 +135,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
                {isRtl ? "المحرك السيادي لتمكين الكفاءات" : "Sovereign Engine for Talent Empowerment"}
              </p>
-             <p className="opacity-50">© {new Date().getFullYear()} {isRtl ? 'جميع الحقوق محفوظة - منصة سيرتي' : 'All Rights Reserved - Sira-AI'}</p>
+             <p className="opacity-50">© {new Date().getFullYear()} {isRtl ? 'جميع الحقوق محفوظة - منصة سِيرة' : 'All Rights Reserved - Sira'}</p>
           </div>
           <div className="flex flex-col items-center gap-4">
             <a 
@@ -211,7 +211,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
                   value={supportForm.message}
                   onChange={e => setSupportForm({...supportForm, message: e.target.value})}
                 />
-                <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 rounded-2xl shadow-xl transition-all">
+                <button type="submit" className="w-full bg-[#ff5a00] hover:bg-[#e65100] text-white font-black py-4 rounded-2xl shadow-xl transition-all">
                   {t.support_form_submit}
                 </button>
               </form>

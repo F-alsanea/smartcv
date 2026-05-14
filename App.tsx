@@ -57,7 +57,7 @@ const LegalModal: React.FC<{
         <div className="p-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 text-center">
           <button 
             onClick={onClose}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-4 rounded-3xl font-black shadow-xl transition-all"
+            className="bg-[#ff5a00] hover:bg-[#e65100] text-white px-12 py-4 rounded-3xl font-black shadow-xl transition-all"
           >
             {isRtl ? 'موافق' : 'I Agree / Close'}
           </button>
@@ -294,7 +294,7 @@ const App: React.FC = () => {
           <div className="max-w-5xl mx-auto py-12 animate-in fade-in zoom-in duration-300">
             <h2 className="text-5xl font-black mb-8 tracking-tighter text-slate-900 dark:text-white text-center">{t.payment_benefits_title}</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-white dark:bg-slate-900 p-10 rounded-[40px] shadow-3xl border-t-8 border-emerald-500">
+              <div className="bg-white dark:bg-slate-900 p-10 rounded-[40px] shadow-3xl border-t-8 border-[#ff5a00]">
                 <h3 className="text-2xl font-black mb-6">{t.seeker_benefits_title} ({PAYMENT_INFO.seekerPrice[uiLang === Language.AR ? 'ar' : 'en']})</h3>
                 <ul className="space-y-3">
                   {(t as any).seeker_benefits_list.map((b: string, i: number) => <li key={i} className="text-sm font-bold flex gap-2"><i className="fa-solid fa-check text-emerald-500"></i>{b}</li>)}
@@ -319,26 +319,26 @@ const App: React.FC = () => {
           <div className="py-20 animate-in fade-in zoom-in duration-300">
             {/* Hero Section */}
             <div className="flex flex-col items-center mb-32">
-              <div className="mb-8 inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-sm">
+              <div className="mb-8 inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-sm">
                 <i className="fa-solid fa-shield-halved"></i>
                 {isRtl ? 'المحرك السيادي الأول في المملكة' : 'KSA\'s First Sovereign Career Engine'}
               </div>
               <h2 className="text-5xl md:text-7xl lg:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter text-center px-4">
-                {t.hero_title}<span className="text-emerald-500">{t.hero_title_accent}</span>
+                {t.hero_title}<span className="text-[#ff5a00]">{t.hero_title_accent}</span>
               </h2>
               <p className="text-slate-500 dark:text-slate-400 text-lg md:text-2xl mb-16 text-center max-w-2xl font-medium leading-relaxed px-4">
                 {t.hero_desc}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-4xl px-4">
-                <button onClick={() => setRole(UserRole.SEEKER)} className="p-8 md:p-12 bg-white dark:bg-slate-900 border-2 rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[50px]"></div>
-                  <i className="fa-solid fa-user-graduate text-3xl md:text-4xl text-emerald-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                <button onClick={() => setRole(UserRole.SEEKER)} className="p-8 md:p-12 bg-white dark:bg-slate-900 border-2 rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-[#ff5a00] transition-all text-start group relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff5a00]/5 blur-[50px]"></div>
+                  <i className="fa-solid fa-user-graduate text-3xl md:text-4xl text-[#ff5a00] mb-6 group-hover:scale-110 transition-transform"></i>
                   <h3 className="text-2xl md:text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
                   <p className="text-slate-500 text-xs md:text-sm">{t.role_seeker_desc}</p>
                 </button>
-                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-8 md:p-12 bg-slate-900 text-white rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
+                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-8 md:p-12 bg-slate-900 text-white rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-[#ff5a00] transition-all text-start group relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px]"></div>
-                  <i className="fa-solid fa-bolt text-3xl md:text-4xl text-emerald-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                  <i className="fa-solid fa-bolt text-3xl md:text-4xl text-amber-400 mb-6 group-hover:scale-110 transition-transform"></i>
                   <h3 className="text-2xl md:text-3xl font-black mb-2">{t.role_employer}</h3>
                   <p className="text-slate-400 text-xs md:text-sm">{t.role_employer_desc}</p>
                 </button>
@@ -368,8 +368,8 @@ const App: React.FC = () => {
                   { icon: 'fa-brain', title: isRtl ? 'ذكاء اصطناعي سيادي' : 'Sovereign AI', desc: isRtl ? 'معالجة بياناتك محلياً وبدقة متناهية تناسب سوقنا.' : 'Process your data locally with extreme precision for our market.' },
                   { icon: 'fa-money-bill-trend-up', title: isRtl ? 'زيادة الدخل' : 'Revenue Growth', desc: isRtl ? 'مساعدتنا في التفاوض تزيد فرص حصولك على راتب أعلى.' : 'Our negotiation assistant increases your chances of a higher salary.' }
                 ].map((f, i) => (
-                  <div key={i} className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-[40px] shadow-xl border border-slate-50 dark:border-slate-800 hover:border-emerald-500 transition-all text-center">
-                    <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                  <div key={i} className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-[40px] shadow-xl border border-slate-50 dark:border-slate-800 hover:border-[#ff5a00] transition-all text-center">
+                    <div className="w-16 h-16 bg-orange-50 dark:bg-orange-900/20 text-[#ff5a00] rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl">
                       <i className={`fa-solid ${f.icon}`}></i>
                     </div>
                     <h4 className="text-xl font-black mb-3 dark:text-white">{f.title}</h4>
@@ -381,14 +381,14 @@ const App: React.FC = () => {
 
             {/* Revenue CTA */}
             <div className="bg-slate-900 rounded-[40px] md:rounded-[60px] p-8 md:p-16 text-center relative overflow-hidden shadow-4xl group mx-4">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[100px] pointer-events-none transition-all group-hover:bg-emerald-500/20"></div>
+               <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff5a00]/10 blur-[100px] pointer-events-none transition-all group-hover:bg-[#ff5a00]/20"></div>
                <h3 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter">
                  {isRtl ? 'جاهز للانتقال للمستوى التالي؟' : 'Ready to Leap to the Next Level?'}
                </h3>
                <p className="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
                  {isRtl ? 'انضم لأكثر من 5000 محترف حصلوا على وظائف أحلامهم باستخدام تقنياتنا.' : 'Join over 5,000 professionals who landed their dream jobs using our technology.'}
                </p>
-               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 md:px-12 py-4 md:py-5 rounded-3xl font-black text-base md:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all">
+               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-[#ff5a00] hover:bg-[#e65100] text-white px-8 md:px-12 py-4 md:py-5 rounded-3xl font-black text-base md:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all">
                  {isRtl ? 'ابدأ رحلتك المهنية الآن' : 'Start Your Career Journey Now'}
                </button>
             </div>
@@ -428,7 +428,7 @@ const App: React.FC = () => {
                    <div className="bg-white dark:bg-slate-900 p-8 rounded-[40px] shadow-3xl border border-slate-100 dark:border-slate-800 sticky top-24">
                       <h3 className="text-xl font-black mb-6 dark:text-white">{t.design_customize}</h3>
                       <div className="grid grid-cols-2 gap-3 mb-6">
-                        {Object.values(TemplateType).map(v => <button key={v} onClick={() => setTemplate(v)} className={`p-3 rounded-2xl border-2 text-[10px] font-black ${template === v ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-50 dark:border-slate-800 text-slate-400'}`}>{v}</button>)}
+                        {Object.values(TemplateType).map(v => <button key={v} onClick={() => setTemplate(v)} className={`p-3 rounded-2xl border-2 text-[10px] font-black ${template === v ? 'border-[#ff5a00] bg-orange-50 text-[#ff5a00]' : 'border-slate-50 dark:border-slate-800 text-slate-400'}`}>{v}</button>)}
                       </div>
                       <button onClick={handleTranslateToggle} className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-sm shadow-xl flex items-center justify-center gap-2">
                         <i className="fa-solid fa-language"></i> {t.translate_btn}
@@ -440,12 +440,12 @@ const App: React.FC = () => {
                    {!activated && <Paywall role={role} otp={otp || '0000'} userName={cvData.personal_info.full_name} onActivate={handleActivate} lang={uiLang} />}
                    {activated && (
                      <div className="space-y-12">
-                        <div className="bg-emerald-600 text-white p-10 rounded-[50px] shadow-4xl flex flex-col md:flex-row items-center justify-between no-print">
+                        <div className="bg-[#ff5a00] text-white p-10 rounded-[50px] shadow-4xl flex flex-col md:flex-row items-center justify-between no-print">
                            <div>
                              <h4 className="text-3xl font-black mb-1">{t.verified_badge}</h4>
                              <p className="opacity-80 font-bold">{t.verified_desc}</p>
                            </div>
-                           <button onClick={() => handlePrint()} className="bg-white text-emerald-600 px-12 py-5 rounded-3xl font-black shadow-xl">
+                           <button onClick={() => handlePrint()} className="bg-white text-[#ff5a00] px-12 py-5 rounded-3xl font-black shadow-xl">
                              <i className="fa-solid fa-file-pdf"></i> {isRtl ? 'تحميل النسخة النهائية' : 'Download Now'}
                            </button>
                         </div>
@@ -478,12 +478,12 @@ const App: React.FC = () => {
              <p className="text-slate-500 mb-10">{t.archive_desc}</p>
              <div className="grid gap-4">
                 {archive.length > 0 ? archive.map(item => (
-                  <div key={item.id} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border dark:border-slate-800 flex justify-between items-center group hover:border-emerald-500 transition-all">
+                  <div key={item.id} className="bg-white dark:bg-slate-900 p-6 rounded-3xl border dark:border-slate-800 flex justify-between items-center group hover:border-[#ff5a00] transition-all">
                     <div>
                       <h4 className="font-black text-xl dark:text-white">{item.cv.personal_info.full_name}</h4>
                       <p className="text-xs text-slate-400 font-bold">{item.job} | {item.date}</p>
                     </div>
-                    <button onClick={() => { setRole(UserRole.SEEKER); setActivated(true); setResult({cv: item.cv, career_path: {} as any, smart_helper: {} as any, market_insights: {} as any}); setWizardStep(WizardStep.PREVIEW); setActiveInfoPage('home'); }} className="bg-slate-900 dark:bg-emerald-600 text-white px-6 py-2 rounded-xl text-xs font-black">تحميل</button>
+                    <button onClick={() => { setRole(UserRole.SEEKER); setActivated(true); setResult({cv: item.cv, career_path: {} as any, smart_helper: {} as any, market_insights: {} as any}); setWizardStep(WizardStep.PREVIEW); setActiveInfoPage('home'); }} className="bg-black text-white px-6 py-2 rounded-xl text-xs font-black">تحميل</button>
                   </div>
                 )) : <div className="text-center py-20 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border-2 border-dashed font-bold text-slate-400">{t.archive_empty}</div>}
              </div>
@@ -502,7 +502,7 @@ const App: React.FC = () => {
       {loading && (
         <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-3xl z-[600] flex items-center justify-center p-8 no-print">
           <div className="text-center space-y-8 max-w-lg animate-pulse">
-            <div className="w-32 h-32 border-[12px] border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto shadow-4xl shadow-emerald-500/20"></div>
+            <div className="w-32 h-32 border-[12px] border-[#ff5a00] border-t-transparent rounded-full animate-spin mx-auto shadow-4xl shadow-[#ff5a00]/20"></div>
             <h4 className="text-4xl font-black text-white tracking-tighter">Turbo Neural Sync...</h4>
             <p className="text-slate-400 font-bold text-lg">{isRtl ? 'جاري معالجة المحرك السيادي بسرعة الضوء...' : 'Sovereign Engine processing...'}</p>
           </div>

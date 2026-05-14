@@ -68,7 +68,7 @@ const CV_SCHEMA = {
 export const suggestFieldContent = async (fieldName: string, currentData: CVData, lang: Language): Promise<string> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `Professional resume writer for Sira-AI Platform by Faisal Al-Sunni. Field: ${fieldName}. Target: ${currentData?.personal_info?.target_job || 'General'}. Lang: ${lang}. Impactful, metrics-driven sentences for 2026 market standards.`,
+    contents: `Professional resume writer for Sira (سِيرة) Platform by Faisal Al-Sunni. Field: ${fieldName}. Target: ${currentData?.personal_info?.target_job || 'General'}. Lang: ${lang}. Impactful, metrics-driven sentences for 2026 market standards.`,
   });
   return response.text.trim();
 };
@@ -76,7 +76,7 @@ export const suggestFieldContent = async (fieldName: string, currentData: CVData
 export const rewriteContent = async (text: string, context: string, lang: Language): Promise<RewriteAlternatives> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `As the Sira-AI sovereign engine by Faisal Al-Sunni, rewrite the following professional content in exactly 3 different, highly professional, and impactful ways. Content type: ${context}. Lang: ${lang}. Content: "${text}". Use power verbs and metric-oriented language.`,
+    contents: `As the Sira (سِيرة) sovereign engine by Faisal Al-Sunni, rewrite the following professional content in exactly 3 different, highly professional, and impactful ways. Content type: ${context}. Lang: ${lang}. Content: "${text}". Use power verbs and metric-oriented language.`,
     config: {
       responseMimeType: "application/json",
       responseSchema: {
@@ -154,7 +154,7 @@ export const generateMockCandidates = async (filters: any): Promise<CandidatePro
 export const processCVInput = async (input: string, targetJob: string, lang: Language): Promise<ApiResponse> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `Sovereignty Engine Sira-AI by Faisal Al-Sunni. Transform user input into a world-class, metrics-driven professional career package for 2026.
+    contents: `Sovereignty Engine Sira (سِيرة) by Faisal Al-Sunni. Transform user input into a world-class, metrics-driven professional career package for 2026.
     Include: CV, Career Roadmap, Application Helpers, Regional Insights, 5-Year Growth Timeline, Portfolio Structure, Social Brand posts, and Salary Negotiation data.
     Input: ${input}, Target: ${targetJob}, Lang: ${lang}`,
     config: { 
@@ -319,7 +319,7 @@ export const verifyCertificate = async (base64Data: string, cvData: CVData): Pro
 export const analyzeSelfIntro = async (text: string, targetJob: string): Promise<InterviewAnalysis> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `As an expert interview coach for Sira-AI by Faisal Al-Sunni, analyze this self-introduction for the role: ${targetJob}.
+    contents: `As an expert interview coach for Sira (سِيرة) by Faisal Al-Sunni, analyze this self-introduction for the role: ${targetJob}.
     Evaluate confidence, keyword relevance, and emotional intelligence (EQ).
     Self-introduction text: "${text}"`,
     config: {
