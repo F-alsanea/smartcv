@@ -13,7 +13,7 @@ import {
   RewriteAlternatives
 } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: (import.meta as any).env.VITE_API_KEY || 'DUMMY_KEY' });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY || (process as any).env.GEMINI_API_KEY || 'DUMMY_KEY' });
 
 const CV_SCHEMA = {
   type: Type.OBJECT,
@@ -63,7 +63,7 @@ const CV_SCHEMA = {
 
 export const suggestFieldContent = async (fieldName: string, currentData: CVData, lang: Language): Promise<string> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Professional resume writer for Sira-AI Platform by Faisal Al-Sunni. Field: ${fieldName}. Target: ${currentData?.personal_info?.target_job || 'General'}. Lang: ${lang}. Impactful, metrics-driven sentences for 2026 market standards.`,
   });
   return response.text.trim();
@@ -71,7 +71,7 @@ export const suggestFieldContent = async (fieldName: string, currentData: CVData
 
 export const rewriteContent = async (text: string, context: string, lang: Language): Promise<RewriteAlternatives> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `As the Sira-AI sovereign engine by Faisal Al-Sunni, rewrite the following professional content in exactly 3 different, highly professional, and impactful ways. Content type: ${context}. Lang: ${lang}. Content: "${text}". Use power verbs and metric-oriented language.`,
     config: {
       responseMimeType: "application/json",
@@ -93,7 +93,7 @@ export const rewriteContent = async (text: string, context: string, lang: Langua
 
 export const translateCV = async (cv: CVData, targetLang: Language): Promise<CVData> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Perform a professional recruitment-grade neural translation of this CV to ${targetLang}. Mirror all fields exactly. Preserve all metric-driven achievements and technical terms. Ensure cultural professional relevance for ${targetLang}. Data: ${JSON.stringify(cv)}`,
     config: { 
       responseMimeType: "application/json",
@@ -105,7 +105,7 @@ export const translateCV = async (cv: CVData, targetLang: Language): Promise<CVD
 
 export const generateMockCandidates = async (filters: any): Promise<CandidateProfile[]> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Generate 3 diverse professional candidate profiles matching these filters: ${JSON.stringify(filters)}. Each candidate MUST have 'id', 'personal_info', 'top_achievements', 'ai_fit_score', 'expected_salary', and 'personality_eval'.`,
     config: { 
       responseMimeType: "application/json",
@@ -149,7 +149,7 @@ export const generateMockCandidates = async (filters: any): Promise<CandidatePro
 
 export const processCVInput = async (input: string, targetJob: string, lang: Language): Promise<ApiResponse> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Sovereignty Engine Sira-AI by Faisal Al-Sunni. Transform user input into a world-class, metrics-driven professional career package for 2026.
     Include: CV, Career Roadmap, Application Helpers, Regional Insights, 5-Year Growth Timeline, Portfolio Structure, Social Brand posts, and Salary Negotiation data.
     Input: ${input}, Target: ${targetJob}, Lang: ${lang}`,
@@ -260,7 +260,7 @@ export const processCVInput = async (input: string, targetJob: string, lang: Lan
 
 export const generateCoverLetter = async (cv: CVData, lang: Language): Promise<string> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Generate a high-impact cover letter for ${cv?.personal_info?.full_name || 'Candidate'} targeting ${cv?.personal_info?.target_job || 'this role'}. Lang: ${lang}. Data: ${JSON.stringify(cv)}`,
   });
   return response.text.trim();
@@ -268,7 +268,7 @@ export const generateCoverLetter = async (cv: CVData, lang: Language): Promise<s
 
 export const magicExtractCV = async (base64File: string, lang: Language): Promise<CVData> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: {
       parts: [
         { inlineData: { mimeType: base64File.split(';')[0].split(':')[1], data: base64File.split(',')[1] } },
@@ -285,7 +285,7 @@ export const magicExtractCV = async (base64File: string, lang: Language): Promis
 
 export const analyzeJobMatch = async (cv: CVData, jobDescription: string): Promise<JobMatchResult> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Compare this CV to the Job Description: ${jobDescription}. Calculate match score and missing keywords.`,
     config: { responseMimeType: "application/json" }
   });
@@ -294,7 +294,7 @@ export const analyzeJobMatch = async (cv: CVData, jobDescription: string): Promi
 
 export const verifyCertificate = async (base64Data: string, cvData: CVData): Promise<VerificationResult> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: {
       parts: [
         {
@@ -314,7 +314,7 @@ export const verifyCertificate = async (base64Data: string, cvData: CVData): Pro
 // Fix for missing analyzeSelfIntro in VirtualCoach.tsx
 export const analyzeSelfIntro = async (text: string, targetJob: string): Promise<InterviewAnalysis> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `As an expert interview coach for Sira-AI by Faisal Al-Sunni, analyze this self-introduction for the role: ${targetJob}.
     Evaluate confidence, keyword relevance, and emotional intelligence (EQ).
     Self-introduction text: "${text}"`,
@@ -338,7 +338,7 @@ export const analyzeSelfIntro = async (text: string, targetJob: string): Promise
 
 export const analyzeInterviewAnswers = async (questions: InterviewQuestion[], answers: string[]): Promise<InterviewReport> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-1.5-flash",
     contents: `Evaluate these interview responses. Questions: ${JSON.stringify(questions)}, Answers: ${JSON.stringify(answers)}.`,
     config: { responseMimeType: "application/json" }
   });
