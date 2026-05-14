@@ -13,7 +13,7 @@ import {
   RewriteAlternatives
 } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: (import.meta as any).env.VITE_API_KEY || 'DUMMY_KEY' });
 
 const CV_SCHEMA = {
   type: Type.OBJECT,
@@ -150,7 +150,9 @@ export const generateMockCandidates = async (filters: any): Promise<CandidatePro
 export const processCVInput = async (input: string, targetJob: string, lang: Language): Promise<ApiResponse> => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
-    contents: `Sovereignty Engine Sira-AI by Faisal Al-Sunni. Generate CV and Career Path JSON. Input: ${input}, Target: ${targetJob}, Lang: ${lang}`,
+    contents: `Sovereignty Engine Sira-AI by Faisal Al-Sunni. Transform user input into a world-class, metrics-driven professional career package for 2026.
+    Include: CV, Career Roadmap, Application Helpers, Regional Insights, 5-Year Growth Timeline, Portfolio Structure, Social Brand posts, and Salary Negotiation data.
+    Input: ${input}, Target: ${targetJob}, Lang: ${lang}`,
     config: { 
       responseMimeType: "application/json",
       responseSchema: {
@@ -193,9 +195,63 @@ export const processCVInput = async (input: string, targetJob: string, lang: Lan
               trending_skills: { type: Type.ARRAY, items: { type: Type.STRING } },
               region_analysis: { type: Type.STRING }
             }
+          },
+          timeline: {
+            type: Type.OBJECT,
+            properties: {
+              steps: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    year: { type: Type.STRING },
+                    title: { type: Type.STRING },
+                    salary: { type: Type.STRING },
+                    focus_skill: { type: Type.STRING }
+                  }
+                }
+              }
+            }
+          },
+          portfolio: {
+            type: Type.OBJECT,
+            properties: {
+              structure: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    section_name: { type: Type.STRING },
+                    key_projects_count: { type: Type.NUMBER },
+                    description: { type: Type.STRING },
+                    recommended_tech: { type: Type.ARRAY, items: { type: Type.STRING } }
+                  }
+                }
+              }
+            }
+          },
+          social_brand: {
+            type: Type.OBJECT,
+            properties: {
+              linkedin_post: { type: Type.STRING },
+              x_post: { type: Type.STRING }
+            }
+          },
+          salary_negotiation: {
+            type: Type.OBJECT,
+            properties: {
+              range: {
+                type: Type.OBJECT,
+                properties: {
+                  min: { type: Type.STRING },
+                  max: { type: Type.STRING }
+                }
+              },
+              script: { type: Type.STRING }
+            }
           }
         },
-        required: ["cv", "career_path", "smart_helper", "market_insights"]
+        required: ["cv", "career_path", "smart_helper", "market_insights", "timeline", "portfolio", "social_brand", "salary_negotiation"]
       }
     }
   });

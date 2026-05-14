@@ -13,13 +13,14 @@ export const Invoice: React.FC<InvoiceProps> = ({ data, lang }) => {
   const isRtl = lang === Language.AR;
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-800 rounded-[40px] p-10 shadow-3xl max-w-2xl mx-auto animate-in zoom-in duration-500 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[60px] pointer-events-none"></div>
+    <div className="bg-white dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-800 rounded-[40px] p-10 shadow-3xl max-w-2xl mx-auto animate-in zoom-in duration-500 relative overflow-hidden font-ar">
+      <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-[80px] pointer-events-none"></div>
+      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-slate-500/5 blur-[50px] pointer-events-none"></div>
       
-      <div className="flex justify-between items-start mb-12">
-        <div className="flex items-center gap-3">
-          <div className="bg-emerald-500 p-3 rounded-2xl shadow-lg">
-            <i className="fa-solid fa-file-invoice-dollar text-2xl text-white"></i>
+      <div className="flex justify-between items-start mb-12 relative z-10">
+        <div className="flex items-center gap-4">
+          <div className="bg-emerald-600 p-4 rounded-3xl shadow-xl rotate-3">
+            <i className="fa-solid fa-certificate text-3xl text-white"></i>
           </div>
           <div>
             <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">{t.invoice_title}</h3>

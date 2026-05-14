@@ -43,9 +43,9 @@ export const Paywall: React.FC<PaywallProps> = ({ role, otp, userName, onActivat
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-[40px] shadow-4xl overflow-hidden border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto animate-in slide-in-from-bottom duration-500">
+    <div className="bg-white dark:bg-slate-900 rounded-[40px] shadow-4xl overflow-hidden border border-slate-200/50 dark:border-slate-800 max-w-2xl mx-auto animate-in slide-in-from-bottom duration-500">
       <div className="bg-slate-900 p-8 text-white text-center relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-emerald-500/10 blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-emerald-500/10 blur-[100px] pointer-events-none backdrop-blur-xl"></div>
         <div className="w-16 h-16 bg-emerald-500 text-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl">
           <i className="fa-solid fa-credit-card text-2xl"></i>
         </div>

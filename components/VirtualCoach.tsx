@@ -22,19 +22,20 @@ export const VirtualCoach: React.FC<{ targetJob: string }> = ({ targetJob }) => 
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
-      <div className="bg-indigo-700 p-6 text-white">
-        <h3 className="text-xl font-bold flex items-center gap-2">
-          <i className="fa-solid fa-user-graduate"></i>
+    <div className="bg-white dark:bg-slate-900 rounded-[40px] shadow-3xl border border-slate-100 dark:border-slate-800 overflow-hidden font-ar">
+      <div className="bg-slate-900 p-8 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px]"></div>
+        <h3 className="text-2xl font-black flex items-center gap-3 relative z-10">
+          <i className="fa-solid fa-user-graduate text-emerald-500"></i>
           المدرب الافتراضي (Virtual Coach)
         </h3>
-        <p className="text-indigo-100 text-sm mt-1">حلل نبرتك وذكاءك العاطفي قبل المقابلة</p>
+        <p className="text-slate-400 text-xs mt-2 font-bold opacity-80 relative z-10 uppercase tracking-widest">حلل نبرتك وذكاءك العاطفي قبل المقابلة</p>
       </div>
-      <div className="p-8 space-y-6">
-        <div className="space-y-3">
-          <label className="text-sm font-bold text-slate-700 block">اكتب أو سجل نص تعريفك بنفسك (Self-Intro):</label>
+      <div className="p-10 space-y-8">
+        <div className="space-y-4">
+          <label className="text-sm font-black text-slate-700 dark:text-slate-300 uppercase tracking-widest block px-2">اكتب أو سجل نص تعريفك بنفسك (Self-Intro):</label>
           <textarea
-            className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none h-32 text-sm"
+            className="w-full p-5 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-3xl focus:border-emerald-500 outline-none h-40 text-sm leading-relaxed dark:text-white"
             placeholder="مثال: أنا مبرمج بخبرة 5 سنوات في تطوير تطبيقات الويب..."
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -42,9 +43,10 @@ export const VirtualCoach: React.FC<{ targetJob: string }> = ({ targetJob }) => 
           <button
             onClick={handleAnalyze}
             disabled={loading || !text.trim()}
-            className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-black transition-all disabled:opacity-50"
+            className="w-full bg-emerald-600 text-white font-black py-5 rounded-3xl hover:bg-emerald-700 shadow-xl transition-all disabled:opacity-50 flex items-center justify-center gap-3"
           >
-            {loading ? <i className="fa-solid fa-spinner fa-spin ml-2"></i> : 'بدء تحليل لغة الخطاب'}
+            {loading ? <i className="fa-solid fa-spinner fa-spin"></i> : <i className="fa-solid fa-bolt"></i>}
+            بناء تحليل عصبى فوراً
           </button>
         </div>
 
