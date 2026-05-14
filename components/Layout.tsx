@@ -18,6 +18,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
   const isDark = themeMode === ThemeMode.DARK;
   
   const [showSupport, setShowSupport] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [supportSuccess, setSupportSuccess] = useState(false);
   const [supportForm, setSupportForm] = useState({ subject: '', name: '', phone: '', email: '', message: '' });
 
@@ -73,6 +74,12 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
               <button onClick={() => setShowSupport(true)} className="hover:text-emerald-400 transition-colors">{t.nav_contact}</button>
             </nav>
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                className="lg:hidden bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 p-2 rounded-full text-white border border-slate-700 transition-all flex items-center justify-center w-10 h-10"
+              >
+                <i className={`fa-solid ${showMobileMenu ? 'fa-xmark' : 'fa-bars'}`}></i>
+              </button>
               <button 
                 onClick={onThemeToggle}
                 className="bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 p-2 rounded-full text-white border border-slate-700 transition-all flex items-center justify-center w-10 h-10 shadow-inner"
@@ -89,6 +96,21 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {showMobileMenu && (
+          <div className="lg:hidden bg-slate-900 border-t border-slate-800 animate-in slide-in-from-top duration-300">
+            <nav className="container mx-auto px-4 py-6 flex flex-col gap-4 text-[10px] font-black uppercase tracking-widest">
+              <button onClick={() => { onNavClick?.('about'); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2 border-b border-slate-800">{t.nav_about}</button>
+              <button onClick={() => { onNavClick?.('archive'); setShowMobileMenu(false); }} className="hover:text-amber-400 transition-colors flex items-center gap-1.5 py-2 border-b border-slate-800">
+                <i className="fa-solid fa-crown text-amber-500"></i> {t.nav_archive}
+              </button>
+              <button onClick={() => { onNavClick?.('payment'); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2 border-b border-slate-800">{t.nav_payment}</button>
+              <button onClick={() => { onNavClick?.('general'); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2 border-b border-slate-800">{t.nav_terms}</button>
+              <button onClick={() => { setShowSupport(true); setShowMobileMenu(false); }} className="hover:text-emerald-400 transition-colors text-start py-2">{t.nav_contact}</button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-grow">
