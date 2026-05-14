@@ -48,52 +48,56 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 transition-colors duration-300 font-ar">
-      <header className="bg-slate-900/95 dark:bg-black/95 text-white shadow-xl py-4 lg:py-6 transition-all no-print sticky top-0 z-[100] backdrop-blur-xl">
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavClick?.('home')}>
-            <div className="bg-[#ff5a00] p-3 rounded-[18px] rotate-3 shadow-2xl shadow-[#ff5a00]/20">
-              <i className="fa-solid fa-bolt-lightning text-2xl"></i>
+      <header className="bg-slate-900/95 dark:bg-black/95 text-white shadow-sm py-3 lg:py-5 transition-all no-print sticky top-0 z-[100] backdrop-blur-xl border-b border-white/5">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={() => onNavClick?.('home')}>
+            <div className="bg-[#ff5a00] p-2 md:p-3 rounded-xl md:rounded-[18px] rotate-3 shadow-lg shadow-[#ff5a00]/20">
+              <i className="fa-solid fa-bolt-lightning text-xl md:text-2xl"></i>
             </div>
             <div>
-              <h1 className={`text-2xl font-black tracking-tighter ${!isRtl ? 'font-en' : ''}`}>
+              <h1 className={`text-xl md:text-2xl font-black tracking-tighter ${!isRtl ? 'font-en' : ''}`}>
                 {isRtl ? 'سِيرة' : 'Sira'}
               </h1>
-              <span className="text-amber-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+              <span className="hidden md:flex text-amber-500 text-[10px] font-black uppercase tracking-widest items-center gap-1">
                 {t.tagline}
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-4 md:gap-6">
-            <nav className="hidden lg:flex gap-6 text-[10px] font-black uppercase tracking-widest">
-              <button onClick={() => onNavClick?.('about')} className="hover:text-[#ff5a00] transition-colors">{t.nav_about}</button>
-              <button onClick={() => onNavClick?.('archive')} className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                <i className="fa-solid fa-crown text-amber-500"></i> {t.nav_archive}
-              </button>
-              <button onClick={() => onNavClick?.('payment')} className="hover:text-[#ff5a00] transition-colors">{t.nav_payment}</button>
-              <button onClick={() => onNavClick?.('general')} className="hover:text-[#ff5a00] transition-colors">{t.nav_terms}</button>
-              <button onClick={() => setShowSupport(true)} className="hover:text-[#ff5a00] transition-colors">{t.nav_contact}</button>
-            </nav>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="lg:hidden bg-black hover:bg-slate-800 p-2 rounded-full text-white border border-slate-800 transition-all flex items-center justify-center w-10 h-10"
-              >
-                <i className={`fa-solid ${showMobileMenu ? 'fa-xmark' : 'fa-bars'}`}></i>
-              </button>
-              <button 
-                onClick={onThemeToggle}
-                className="bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 p-2 rounded-full text-white border border-slate-700 transition-all flex items-center justify-center w-10 h-10 shadow-inner"
-              >
-                {isDark ? <i className="fa-solid fa-sun text-yellow-400"></i> : <i className="fa-solid fa-moon text-slate-300"></i>}
-              </button>
-              <button 
-                onClick={onLangToggle}
-                className="bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 px-5 py-2.5 rounded-full text-[10px] font-black border border-slate-700 transition-all flex items-center gap-2 shadow-xl"
-              >
-                <i className="fa-solid fa-globe text-[#ff5a00]"></i>
-                {isRtl ? 'English' : 'العربية'}
-              </button>
-            </div>
+
+          <nav className="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest">
+            <button onClick={() => onNavClick?.('about')} className="hover:text-[#ff5a00] transition-colors">{t.nav_about}</button>
+            <button onClick={() => onNavClick?.('archive')} className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+              <i className="fa-solid fa-crown text-amber-500"></i> {t.nav_archive}
+            </button>
+            <button onClick={() => onNavClick?.('payment')} className="hover:text-[#ff5a00] transition-colors">{t.nav_payment}</button>
+            <button onClick={() => onNavClick?.('general')} className="hover:text-[#ff5a00] transition-colors">{t.nav_terms}</button>
+            <button onClick={() => setShowSupport(true)} className="hover:text-[#ff5a00] transition-colors">{t.nav_contact}</button>
+          </nav>
+
+          <div className="flex items-center gap-2 md:gap-3">
+            <button
+              onClick={onThemeToggle}
+              aria-label="Toggle Theme"
+              className="bg-slate-800/50 hover:bg-slate-700/50 p-2 rounded-full text-white transition-all flex items-center justify-center w-9 h-9 md:w-10 md:h-10 border border-white/10"
+            >
+              {isDark ? <i className="fa-solid fa-sun text-yellow-400 text-sm md:text-base"></i> : <i className="fa-solid fa-moon text-slate-300 text-sm md:text-base"></i>}
+            </button>
+            <button
+              onClick={onLangToggle}
+              aria-label="Toggle Language"
+              className="bg-slate-800/50 hover:bg-slate-700/50 px-3 md:px-5 py-2 md:py-2.5 rounded-full text-[10px] md:text-[11px] font-black border border-white/10 transition-all flex items-center gap-2"
+            >
+              <i className="fa-solid fa-globe text-[#ff5a00]"></i>
+              <span className="hidden xs:inline">{isRtl ? 'English' : 'العربية'}</span>
+              <span className="xs:hidden">{isRtl ? 'EN' : 'AR'}</span>
+            </button>
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              aria-label="Toggle Menu"
+              className="lg:hidden bg-[#ff5a00] hover:bg-[#e65100] p-2 rounded-full text-white transition-all flex items-center justify-center w-9 h-9 md:w-10 md:h-10 shadow-lg shadow-[#ff5a00]/20"
+            >
+              <i className={`fa-solid ${showMobileMenu ? 'fa-xmark' : 'fa-bars'} text-sm md:text-base`}></i>
+            </button>
           </div>
         </div>
 
@@ -159,9 +163,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, lang, onLangToggle, th
       {/* Support Modal */}
       {showSupport && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md">
-          <div className="bg-white dark:bg-slate-900 rounded-[40px] shadow-4xl w-full max-w-lg p-8 relative animate-in zoom-in duration-300">
-            <button onClick={() => setShowSupport(false)} className="absolute top-6 left-6 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
-              <i className="fa-solid fa-xmark text-2xl"></i>
+          <div className="bg-white dark:bg-slate-900 rounded-3xl md:rounded-[40px] shadow-4xl w-full max-w-lg p-6 md:p-10 relative animate-in zoom-in duration-300 overflow-y-auto max-h-[90vh]">
+            <button onClick={() => setShowSupport(false)} className="absolute top-4 md:top-6 left-4 md:left-6 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+              <i className="fa-solid fa-xmark text-xl md:text-2xl"></i>
             </button>
             <h3 className="text-2xl font-black mb-6 flex items-center gap-3 text-slate-900 dark:text-white">
               <i className="fa-solid fa-headset text-emerald-500"></i>

@@ -42,22 +42,22 @@ const LegalModal: React.FC<{
   const isRtl = lang === Language.AR;
   return (
     <div className="fixed inset-0 z-[500] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xl animate-in fade-in duration-300">
-      <div className="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-[40px] shadow-4xl overflow-hidden border border-slate-200 dark:border-slate-800 animate-in zoom-in duration-300">
-        <div className="bg-slate-900 p-8 text-white flex justify-between items-center border-b border-slate-800">
-          <h3 className="text-2xl font-black tracking-tighter">{title}</h3>
+      <div className="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-3xl md:rounded-[40px] shadow-4xl overflow-hidden border border-slate-200 dark:border-slate-800 animate-in zoom-in duration-300 max-h-[90vh] flex flex-col">
+        <div className="bg-slate-900 p-6 md:p-8 text-white flex justify-between items-center border-b border-slate-800 shrink-0">
+          <h3 className="text-xl md:text-2xl font-black tracking-tighter">{title}</h3>
           <button onClick={onClose} className="hover:scale-110 transition-transform">
             <i className="fa-solid fa-circle-xmark text-2xl text-slate-500 hover:text-white"></i>
           </button>
         </div>
-        <div className="p-10 max-h-[60vh] overflow-y-auto">
-          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300 font-medium">
+        <div className="p-6 md:p-10 overflow-y-auto flex-grow">
+          <p className="text-base md:text-lg leading-relaxed text-slate-600 dark:text-slate-300 font-medium">
             {body}
           </p>
         </div>
-        <div className="p-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 text-center">
+        <div className="p-6 md:p-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 text-center shrink-0">
           <button 
             onClick={onClose}
-            className="bg-[#ff5a00] hover:bg-[#e65100] text-white px-12 py-4 rounded-3xl font-black shadow-xl transition-all"
+            className="bg-[#ff5a00] hover:bg-[#e65100] text-white px-8 md:px-12 py-3 md:py-4 rounded-2xl md:rounded-3xl font-black shadow-xl transition-all w-full md:w-auto"
           >
             {isRtl ? 'موافق' : 'I Agree / Close'}
           </button>
@@ -323,24 +323,24 @@ const App: React.FC = () => {
                 <i className="fa-solid fa-shield-halved"></i>
                 {isRtl ? 'المحرك السيادي الأول في المملكة' : 'KSA\'s First Sovereign Career Engine'}
               </div>
-              <h2 className="text-5xl md:text-7xl lg:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter text-center px-4">
+              <h2 className="text-4xl md:text-7xl lg:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter text-center px-4 leading-[1.1]">
                 {t.hero_title}<span className="text-[#ff5a00]">{t.hero_title_accent}</span>
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 text-lg md:text-2xl mb-16 text-center max-w-2xl font-medium leading-relaxed px-4">
+              <p className="text-slate-500 dark:text-slate-400 text-base md:text-2xl mb-12 md:mb-16 text-center max-w-2xl font-medium leading-relaxed px-6">
                 {t.hero_desc}
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-4xl px-4">
-                <button onClick={() => setRole(UserRole.SEEKER)} className="p-8 md:p-12 bg-white dark:bg-slate-900 border-2 rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-[#ff5a00] transition-all text-start group relative overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 w-full max-w-4xl px-4">
+                <button onClick={() => setRole(UserRole.SEEKER)} className="p-8 md:p-12 bg-white dark:bg-slate-900 border-2 rounded-3xl md:rounded-[50px] shadow-premium hover:shadow-premium-hover hover:border-[#ff5a00] transition-all text-start group relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff5a00]/5 blur-[50px]"></div>
-                  <i className="fa-solid fa-user-graduate text-3xl md:text-4xl text-[#ff5a00] mb-6 group-hover:scale-110 transition-transform"></i>
-                  <h3 className="text-2xl md:text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
-                  <p className="text-slate-500 text-xs md:text-sm">{t.role_seeker_desc}</p>
+                  <i className="fa-solid fa-user-graduate text-2xl md:text-4xl text-[#ff5a00] mb-6 group-hover:scale-110 transition-transform"></i>
+                  <h3 className="text-xl md:text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
+                  <p className="text-slate-500 text-[11px] md:text-sm">{t.role_seeker_desc}</p>
                 </button>
-                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-8 md:p-12 bg-slate-900 text-white rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-[#ff5a00] transition-all text-start group relative overflow-hidden">
+                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-8 md:p-12 bg-slate-900 text-white rounded-3xl md:rounded-[50px] shadow-premium hover:shadow-premium-hover hover:border-[#ff5a00] transition-all text-start group relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px]"></div>
-                  <i className="fa-solid fa-bolt text-3xl md:text-4xl text-amber-400 mb-6 group-hover:scale-110 transition-transform"></i>
-                  <h3 className="text-2xl md:text-3xl font-black mb-2">{t.role_employer}</h3>
-                  <p className="text-slate-400 text-xs md:text-sm">{t.role_employer_desc}</p>
+                  <i className="fa-solid fa-bolt text-2xl md:text-4xl text-amber-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                  <h3 className="text-xl md:text-3xl font-black mb-2">{t.role_employer}</h3>
+                  <p className="text-slate-400 text-[11px] md:text-sm">{t.role_employer_desc}</p>
                 </button>
               </div>
             </div>
@@ -357,38 +357,38 @@ const App: React.FC = () => {
             </div>
 
             {/* Why Sira-AI Section */}
-            <div className="max-w-6xl mx-auto mb-32 px-4">
+            <div className="max-w-6xl mx-auto mb-32 px-6">
               <div className="text-center mb-16">
-                <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter dark:text-white">{isRtl ? 'لماذا يختار المحترفون "سيرتي"؟' : 'Why Professionals Choose Sira-AI?'}</h3>
-                <p className="text-slate-500 dark:text-slate-400 font-medium text-sm md:text-base">{isRtl ? 'نحن لا نصمم مجرد ملفات، نحن نبني هويات مهنية لا تُنسى.' : 'We don\'t just design files, we build unforgettable professional identities.'}</p>
+                <h3 className="text-2xl md:text-5xl font-black mb-4 tracking-tighter dark:text-white">{isRtl ? 'لماذا يختار المحترفون "سيرتي"؟' : 'Why Professionals Choose Sira-AI?'}</h3>
+                <p className="text-slate-500 dark:text-slate-400 font-medium text-[11px] md:text-base">{isRtl ? 'نحن لا نصمم مجرد ملفات، نحن نبني هويات مهنية لا تُنسى.' : 'We don\'t just design files, we build unforgettable professional identities.'}</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
                 {[
                   { icon: 'fa-microchip', title: isRtl ? 'هندسة ATS 2026' : 'ATS 2026 Engineering', desc: isRtl ? 'تخطي أنظمة الفرز الآلي في كبرى الشركات العالمية.' : 'Bypass automated screening systems in top global companies.' },
                   { icon: 'fa-brain', title: isRtl ? 'ذكاء اصطناعي سيادي' : 'Sovereign AI', desc: isRtl ? 'معالجة بياناتك محلياً وبدقة متناهية تناسب سوقنا.' : 'Process your data locally with extreme precision for our market.' },
                   { icon: 'fa-money-bill-trend-up', title: isRtl ? 'زيادة الدخل' : 'Revenue Growth', desc: isRtl ? 'مساعدتنا في التفاوض تزيد فرص حصولك على راتب أعلى.' : 'Our negotiation assistant increases your chances of a higher salary.' }
                 ].map((f, i) => (
-                  <div key={i} className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-[40px] shadow-xl border border-slate-50 dark:border-slate-800 hover:border-[#ff5a00] transition-all text-center">
-                    <div className="w-16 h-16 bg-orange-50 dark:bg-orange-900/20 text-[#ff5a00] rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                  <div key={i} className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-3xl md:rounded-[40px] shadow-premium hover:shadow-premium-hover border border-slate-50 dark:border-slate-800 hover:border-[#ff5a00] transition-all text-center">
+                    <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-50 dark:bg-orange-900/20 text-[#ff5a00] rounded-2xl md:rounded-3xl flex items-center justify-center mx-auto mb-6 text-xl md:text-2xl">
                       <i className={`fa-solid ${f.icon}`}></i>
                     </div>
-                    <h4 className="text-xl font-black mb-3 dark:text-white">{f.title}</h4>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                    <h4 className="text-lg md:text-xl font-black mb-3 dark:text-white">{f.title}</h4>
+                    <p className="text-slate-500 dark:text-slate-400 text-[11px] md:text-sm leading-relaxed">{f.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Revenue CTA */}
-            <div className="bg-slate-900 rounded-[40px] md:rounded-[60px] p-8 md:p-16 text-center relative overflow-hidden shadow-4xl group mx-4">
+            <div className="bg-slate-900 rounded-3xl md:rounded-[60px] p-10 md:p-20 text-center relative overflow-hidden shadow-4xl group mx-4">
                <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff5a00]/10 blur-[100px] pointer-events-none transition-all group-hover:bg-[#ff5a00]/20"></div>
-               <h3 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter">
+               <h3 className="text-2xl md:text-5xl font-black text-white mb-6 tracking-tighter leading-tight">
                  {isRtl ? 'جاهز للانتقال للمستوى التالي؟' : 'Ready to Leap to the Next Level?'}
                </h3>
-               <p className="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+               <p className="text-slate-400 text-base md:text-xl mb-12 max-w-2xl mx-auto font-medium">
                  {isRtl ? 'انضم لأكثر من 5000 محترف حصلوا على وظائف أحلامهم باستخدام تقنياتنا.' : 'Join over 5,000 professionals who landed their dream jobs using our technology.'}
                </p>
-               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-[#ff5a00] hover:bg-[#e65100] text-white px-8 md:px-12 py-4 md:py-5 rounded-3xl font-black text-base md:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all">
+               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-[#ff5a00] hover:bg-[#e65100] text-white px-8 md:px-16 py-4 md:py-6 rounded-2xl md:rounded-3xl font-black text-base md:text-xl shadow-2xl hover:scale-105 active:scale-95 transition-all w-full md:w-auto">
                  {isRtl ? 'ابدأ رحلتك المهنية الآن' : 'Start Your Career Journey Now'}
                </button>
             </div>
