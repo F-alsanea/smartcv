@@ -13,7 +13,7 @@ import {
   RewriteAlternatives
 } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: (import.meta as any).env.VITE_API_KEY || 'DUMMY_KEY' });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY || (process as any).env.GEMINI_API_KEY || 'DUMMY_KEY' });
 
 const CV_SCHEMA = {
   type: Type.OBJECT,
