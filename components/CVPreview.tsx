@@ -246,7 +246,7 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
 
   const templates = {
     [TemplateType.CLASSICAL]: () => (
-      <div className={`p-10 min-h-[1123px] flex flex-col ${textAlignClass} bg-white print:p-4 print:m-0`}>
+      <div className={`p-6 md:p-10 min-h-[1123px] flex flex-col ${textAlignClass} bg-white print:p-4 print:m-0`}>
         <div className={`border-b-4 border-slate-900 pb-4 mb-6 text-center`}>
           {isEditing ? (
             <input 
@@ -273,8 +273,8 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
       </div>
     ),
     [TemplateType.MODERN]: () => (
-      <div className={`flex min-h-[1123px] ${directionClass} bg-white print:m-0`}>
-        <div className="w-[30%] bg-slate-900 text-white p-6 flex flex-col space-y-6 print:bg-slate-900 print:text-white">
+      <div className={`flex flex-col md:flex-row min-h-[1123px] ${directionClass} bg-white print:m-0`}>
+        <div className="w-full md:w-[30%] bg-slate-900 text-white p-6 flex flex-col space-y-6 print:bg-slate-900 print:text-white">
           <div className="text-center">
              <div className="w-16 h-16 bg-slate-800 rounded-full mx-auto mb-4 border-2 border-slate-700 flex items-center justify-center">
                 <i className="fa-solid fa-user text-2xl"></i>
@@ -287,7 +287,7 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
              {theme.showQR && <SmartQR />}
           </div>
         </div>
-        <div className={`flex-1 p-10 flex flex-col ${eyeComfort ? 'bg-slate-950' : 'bg-white'} ${textAlignClass} print:bg-white print:p-8`}>
+        <div className={`flex-1 p-6 md:p-10 flex flex-col ${eyeComfort ? 'bg-slate-950' : 'bg-white'} ${textAlignClass} print:bg-white print:p-8`}>
           <div className="flex-grow">
             {theme.sectionOrder.filter(s => s === 'summary' || s === 'experience').map(s => renderSection(s))}
           </div>
@@ -296,7 +296,7 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
       </div>
     ),
     [TemplateType.TECH]: () => (
-      <div className={`p-10 min-h-[1123px] flex flex-col ${textAlignClass} bg-slate-950 text-emerald-400 font-mono relative overflow-hidden print:bg-white print:text-slate-900 print:p-8`}>
+      <div className={`p-6 md:p-10 min-h-[1123px] flex flex-col ${textAlignClass} bg-slate-950 text-emerald-400 font-mono relative overflow-hidden print:bg-white print:text-slate-900 print:p-8`}>
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[100px] pointer-events-none print:hidden"></div>
         <div className="border-l-4 border-emerald-500 pl-6 mb-10 print:border-emerald-600">
           <h2 className="text-4xl font-black text-white print:text-slate-900">{data.personal_info?.full_name || '...'}</h2>
@@ -313,7 +313,7 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
       </div>
     ),
     [TemplateType.EXECUTIVE]: () => (
-      <div className={`p-12 min-h-[1123px] flex flex-col ${textAlignClass} font-serif bg-white border-[12px] border-slate-50 print:border-none print:p-8 print:m-0`}>
+      <div className={`p-6 md:p-12 min-h-[1123px] flex flex-col ${textAlignClass} font-serif bg-white border-4 md:border-[12px] border-slate-50 print:border-none print:p-8 print:m-0`}>
         <div className="text-center mb-10 border-b border-slate-300 pb-6">
           <h2 className="text-3xl font-black text-slate-900 mb-1 uppercase tracking-widest">{data.personal_info?.full_name || '...'}</h2>
           <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-4">{data.personal_info?.target_job}</p>
@@ -333,21 +333,21 @@ export const CVPreview: React.FC<CVPreviewProps> = ({ data, template, theme, lan
       </div>
     ),
     [TemplateType.NEOM]: () => (
-      <div className={`p-10 min-h-[1123px] flex flex-col ${eyeComfort ? 'bg-slate-950' : 'bg-slate-50'} ${textAlignClass} print:bg-white print:p-4 print:m-0`}>
-        <div className={`${eyeComfort ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'} rounded-[32px] shadow-xl p-8 border mb-8 relative overflow-hidden print:shadow-none print:border-slate-200 print:rounded-none`}>
+      <div className={`p-6 md:p-10 min-h-[1123px] flex flex-col ${eyeComfort ? 'bg-slate-950' : 'bg-slate-50'} ${textAlignClass} print:bg-white print:p-4 print:m-0`}>
+        <div className={`${eyeComfort ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'} rounded-[24px] md:rounded-[32px] shadow-xl p-6 md:p-8 border mb-8 relative overflow-hidden print:shadow-none print:border-slate-200 print:rounded-none`}>
           <div className="absolute top-0 right-0 w-48 h-48 blur-[80px] rounded-full opacity-10 print:hidden" style={{ backgroundColor: theme.primaryColor }}></div>
-          <div className="flex justify-between items-center relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
              <div>
-               <h2 className={`text-4xl font-black mb-1 ${eyeComfort ? 'text-white' : 'text-slate-900'} print:text-slate-900 tracking-tighter`}>{data.personal_info?.full_name || '...'}</h2>
-               <div className="flex gap-2">
+               <h2 className={`text-2xl md:text-4xl font-black mb-1 ${eyeComfort ? 'text-white' : 'text-slate-900'} print:text-slate-900 tracking-tighter`}>{data.personal_info?.full_name || '...'}</h2>
+               <div className="flex flex-wrap gap-2">
                 <span className="text-[9px] font-black px-3 py-1 bg-slate-900 text-white rounded-full uppercase tracking-widest print:bg-slate-800 print:text-white">{data.personal_info?.target_job}</span>
                 <span className="text-[10px] font-bold text-slate-400 self-center">{data.personal_info?.location}</span>
                </div>
              </div>
-             <div className="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-2xl text-[10px] font-black shadow-inner print:hidden">ATS SCORE: {data.ats_score}%</div>
+             <div className="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-2xl text-[10px] font-black shadow-inner print:hidden shrink-0">ATS SCORE: {data.ats_score}%</div>
           </div>
         </div>
-        <div className="flex-grow grid grid-cols-2 gap-8 print:grid-cols-1">
+        <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8">
           {theme.sectionOrder.map(s => renderSection(s))}
         </div>
         {theme.showQR && <SmartQR />}

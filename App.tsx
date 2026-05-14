@@ -323,24 +323,24 @@ const App: React.FC = () => {
                 <i className="fa-solid fa-shield-halved"></i>
                 {isRtl ? 'المحرك السيادي الأول في المملكة' : 'KSA\'s First Sovereign Career Engine'}
               </div>
-              <h2 className="text-7xl md:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter text-center">
+              <h2 className="text-5xl md:text-7xl lg:text-9xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter text-center px-4">
                 {t.hero_title}<span className="text-emerald-500">{t.hero_title_accent}</span>
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 text-2xl mb-16 text-center max-w-2xl font-medium leading-relaxed">
+              <p className="text-slate-500 dark:text-slate-400 text-lg md:text-2xl mb-16 text-center max-w-2xl font-medium leading-relaxed px-4">
                 {t.hero_desc}
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
-                <button onClick={() => setRole(UserRole.SEEKER)} className="p-12 bg-white dark:bg-slate-900 border-2 rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-4xl px-4">
+                <button onClick={() => setRole(UserRole.SEEKER)} className="p-8 md:p-12 bg-white dark:bg-slate-900 border-2 rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[50px]"></div>
-                  <i className="fa-solid fa-user-graduate text-4xl text-emerald-500 mb-6 group-hover:scale-110 transition-transform"></i>
-                  <h3 className="text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
-                  <p className="text-slate-500 text-sm">{t.role_seeker_desc}</p>
+                  <i className="fa-solid fa-user-graduate text-3xl md:text-4xl text-emerald-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                  <h3 className="text-2xl md:text-3xl font-black mb-2 dark:text-white">{t.role_seeker}</h3>
+                  <p className="text-slate-500 text-xs md:text-sm">{t.role_seeker_desc}</p>
                 </button>
-                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-12 bg-slate-900 text-white rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
+                <button onClick={() => setRole(UserRole.EMPLOYER)} className="p-8 md:p-12 bg-slate-900 text-white rounded-[40px] md:rounded-[50px] shadow-3xl hover:border-emerald-500 transition-all text-start group relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px]"></div>
-                  <i className="fa-solid fa-bolt text-4xl text-emerald-400 mb-6 group-hover:scale-110 transition-transform"></i>
-                  <h3 className="text-3xl font-black mb-2">{t.role_employer}</h3>
-                  <p className="text-slate-400 text-sm">{t.role_employer_desc}</p>
+                  <i className="fa-solid fa-bolt text-3xl md:text-4xl text-emerald-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                  <h3 className="text-2xl md:text-3xl font-black mb-2">{t.role_employer}</h3>
+                  <p className="text-slate-400 text-xs md:text-sm">{t.role_employer_desc}</p>
                 </button>
               </div>
             </div>
@@ -357,18 +357,18 @@ const App: React.FC = () => {
             </div>
 
             {/* Why Sira-AI Section */}
-            <div className="max-w-6xl mx-auto mb-32">
+            <div className="max-w-6xl mx-auto mb-32 px-4">
               <div className="text-center mb-16">
-                <h3 className="text-5xl font-black mb-4 tracking-tighter dark:text-white">{isRtl ? 'لماذا يختار المحترفون "سيرتي"؟' : 'Why Professionals Choose Sira-AI?'}</h3>
-                <p className="text-slate-500 dark:text-slate-400 font-medium">{isRtl ? 'نحن لا نصمم مجرد ملفات، نحن نبني هويات مهنية لا تُنسى.' : 'We don\'t just design files, we build unforgettable professional identities.'}</p>
+                <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter dark:text-white">{isRtl ? 'لماذا يختار المحترفون "سيرتي"؟' : 'Why Professionals Choose Sira-AI?'}</h3>
+                <p className="text-slate-500 dark:text-slate-400 font-medium text-sm md:text-base">{isRtl ? 'نحن لا نصمم مجرد ملفات، نحن نبني هويات مهنية لا تُنسى.' : 'We don\'t just design files, we build unforgettable professional identities.'}</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {[
                   { icon: 'fa-microchip', title: isRtl ? 'هندسة ATS 2026' : 'ATS 2026 Engineering', desc: isRtl ? 'تخطي أنظمة الفرز الآلي في كبرى الشركات العالمية.' : 'Bypass automated screening systems in top global companies.' },
                   { icon: 'fa-brain', title: isRtl ? 'ذكاء اصطناعي سيادي' : 'Sovereign AI', desc: isRtl ? 'معالجة بياناتك محلياً وبدقة متناهية تناسب سوقنا.' : 'Process your data locally with extreme precision for our market.' },
                   { icon: 'fa-money-bill-trend-up', title: isRtl ? 'زيادة الدخل' : 'Revenue Growth', desc: isRtl ? 'مساعدتنا في التفاوض تزيد فرص حصولك على راتب أعلى.' : 'Our negotiation assistant increases your chances of a higher salary.' }
                 ].map((f, i) => (
-                  <div key={i} className="bg-white dark:bg-slate-900 p-10 rounded-[40px] shadow-xl border border-slate-50 dark:border-slate-800 hover:border-emerald-500 transition-all text-center">
+                  <div key={i} className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-[40px] shadow-xl border border-slate-50 dark:border-slate-800 hover:border-emerald-500 transition-all text-center">
                     <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl">
                       <i className={`fa-solid ${f.icon}`}></i>
                     </div>
@@ -380,15 +380,15 @@ const App: React.FC = () => {
             </div>
 
             {/* Revenue CTA */}
-            <div className="bg-slate-900 rounded-[60px] p-16 text-center relative overflow-hidden shadow-4xl group">
+            <div className="bg-slate-900 rounded-[40px] md:rounded-[60px] p-8 md:p-16 text-center relative overflow-hidden shadow-4xl group mx-4">
                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[100px] pointer-events-none transition-all group-hover:bg-emerald-500/20"></div>
-               <h3 className="text-5xl font-black text-white mb-6 tracking-tighter">
+               <h3 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter">
                  {isRtl ? 'جاهز للانتقال للمستوى التالي؟' : 'Ready to Leap to the Next Level?'}
                </h3>
-               <p className="text-slate-400 text-xl mb-10 max-w-2xl mx-auto">
+               <p className="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
                  {isRtl ? 'انضم لأكثر من 5000 محترف حصلوا على وظائف أحلامهم باستخدام تقنياتنا.' : 'Join over 5,000 professionals who landed their dream jobs using our technology.'}
                </p>
-               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-emerald-500 hover:bg-emerald-600 text-white px-12 py-5 rounded-3xl font-black text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all">
+               <button onClick={() => setRole(UserRole.SEEKER)} className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 md:px-12 py-4 md:py-5 rounded-3xl font-black text-base md:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all">
                  {isRtl ? 'ابدأ رحلتك المهنية الآن' : 'Start Your Career Journey Now'}
                </button>
             </div>
