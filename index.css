@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-ar: "Tajawal", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-en: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Adding custom font placeholders */
+  --font-custom: "MyCustomFont", sans-serif;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+}
+
+@layer utilities {
+  .font-en { font-family: var(--font-en); }
+  .font-ar { font-family: var(--font-ar); }
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-all duration-300;
+    font-family: var(--font-ar);
+  }
+
+  [dir="ltr"] body, [dir="ltr"] {
+    font-family: var(--font-en);
+  }
+}
+
+/* If you have local font files, you can add them like this: */
+/*
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('/fonts/my-font.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
